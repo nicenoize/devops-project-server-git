@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: todo-server-app-deploy
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: todo-server-app
+  template:
+    metadata:
+      labels:
+        app: todo-server-app
+    spec:
+      containers:
+      - name: todo-server-app
+        image: gcr.io/devops-384013/todo-server-app:latest
+        ports:
+        - containerPort: 5000
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "200Mi"
+          limits:
+            cpu: "200m"
+            memory: "400Mi"
+        envFrom:
+        - configMapRef:
+            name: server-side-configs

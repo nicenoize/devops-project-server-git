@@ -16,7 +16,7 @@ spec:
       - image: gcr.io/devops-384013/todo-server-app:latest
         name: container1
         ports:
-        - containerPort: 5000
+        - containerPort: 3000
         imagePullPolicy: IfNotPresent
         envFrom:
         - configMapRef:

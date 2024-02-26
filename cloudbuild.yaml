@@ -18,6 +18,7 @@ steps:
     env:
       - 'CLOUDSDK_COMPUTE_REGION=europe-central2-a'
       - 'CLOUDSDK_CONTAINER_CLUSTER=cluster-1'
+      - 'REACT_APP_baseAPIURL=http://34.118.54.55:3000'
 
 images:
   - 'gcr.io/devops-384013/todo-server-app:latest'

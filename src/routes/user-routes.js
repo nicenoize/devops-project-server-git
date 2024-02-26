@@ -57,7 +57,8 @@ routes.post('/login', async (req, res) => {
         res.cookie('todo-jt', token, cookieOptions).send({ user, token })
 
     } catch (e) {
-        res.status(400).send()
+        console.error(e); // Log the error to the console for debugging
+        res.status(400).send({ error: e.message }); // Send the error message back to the client for more insight
     }
 })
 

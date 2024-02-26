@@ -16,7 +16,7 @@ spec:
       - name: todo-server-app
         image: gcr.io/devops-384013/todo-server-app:latest
         ports:
-        - containerPort: 3000
+        - containerPort: 5000
         envFrom:
         - configMapRef:
             name: server-side-configs

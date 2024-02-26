@@ -15,7 +15,7 @@ spec:
           service:
             name: todo-backend-service
             port:
-              number: 3000
+              number: 5000
       - path: /mongo
         pathType: Prefix
         backend:

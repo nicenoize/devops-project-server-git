@@ -4,8 +4,8 @@ metadata:
   name: todo-backend-service
 spec:
   ports:
-  - port: 3000 # application port
-    targetPort: 3000 # container port
+  - port: 5000 # application port
+    targetPort: 5000 # container port
   selector:
     app: todo-server-app
   type: LoadBalancer

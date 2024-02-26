@@ -3,6 +3,6 @@ kind: ConfigMap
 metadata:
   name: server-side-configs
 data:
-  PORT: "3000"
+  PORT: "5000"
   MONGODB_URL: "mongodb://todo-mongo-service:27017/todo-app" # Adjusted for Kubernetes
   JWT_SECRET: "myjwtsecret" # Added JWT_SECRET

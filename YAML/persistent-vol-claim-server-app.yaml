@@ -4,8 +4,7 @@ metadata:
   name: todo-pvc
 spec:
   accessModes:
-    - ReadWriteOnce  # Adjusted to ReadWriteOnce for compatibility
+  - ReadWriteOnce
   resources:
     requests:
-      storage: 1G
-  # It's okay to omit storageClassName to use the default provisioning.
+      storage: 1Gi

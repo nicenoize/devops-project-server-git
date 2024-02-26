@@ -16,7 +16,10 @@ spec:
       - name: todo-server-app
         image: gcr.io/devops-384013/todo-server-app:latest
         ports:
-        - containerPort: 5000
+        - containerPort: 3000
+        envFrom:
+        - configMapRef:
+            name: server-side-configs
         resources:
           requests:
             cpu: "100m"
@@ -24,6 +27,3 @@ spec:
           limits:
             cpu: "200m"
             memory: "400Mi"
-        envFrom:
-        - configMapRef:
-            name: server-side-configs

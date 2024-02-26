@@ -20,16 +20,6 @@ spec:
         command: ["mongod", "--bind_ip_all"]
         ports:
         - containerPort: 27017
-        resources:
-          requests:
-            cpu: "250m"
-            memory: "512Mi"
-          limits:
-            cpu: "500m"
-            memory: "1Gi"
-        volumeMounts:
-        - name: todo-mongo-vol
-          mountPath: /data/db
       volumes:
       - name: todo-mongo-vol
         persistentVolumeClaim:

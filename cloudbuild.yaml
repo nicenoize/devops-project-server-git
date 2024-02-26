@@ -16,8 +16,8 @@ steps:
   - name: 'gcr.io/cloud-builders/kubectl'
     args: ['apply', '-f', 'YAML/']
     env:
-      - 'CLOUDSDK_COMPUTE_REGION=europe-central2'
-      - 'CLOUDSDK_CONTAINER_CLUSTER=project-cluster'
+      - 'CLOUDSDK_COMPUTE_REGION=europe-central2-a'
+      - 'CLOUDSDK_CONTAINER_CLUSTER=cluster-1'
 
 images:
   - 'gcr.io/devops-384013/todo-server-app:latest'

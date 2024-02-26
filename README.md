@@ -1,2 +1,2 @@
 # devops-project-server-git
-TESTING TRIGGER
+DEPLOYMENT TEST

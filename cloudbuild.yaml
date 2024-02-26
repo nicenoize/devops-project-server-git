@@ -1,11 +1,23 @@
 steps:
-  # Step to authenticate with GKE
-  - name: 'gcr.io/cloud-builders/gcloud'
-    args: ['container', 'clusters', 'get-credentials', 'project-cluster', '--region', 'europe-central2', '--project', 'devops-384013']
+  # Build the Docker image for the server app
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '--platform', 'linux/amd64', '-t', 'gcr.io/devops-384013/todo-server-app:latest', '.']
+    dir: 'path/to/server'
 
-  # Step to apply Kubernetes manifests
+  # Push the Docker image for the server app
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/devops-384013/todo-server-app:latest']
+
+  # Authenticate with GKE
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args: ['container', 'clusters', 'get-credentials', 'cluster-1', '--region', 'europe-central2-a', '--project', 'devops-384013']
+
+  # Apply Kubernetes manifests
   - name: 'gcr.io/cloud-builders/kubectl'
     args: ['apply', '-f', 'YAML/']
     env:
       - 'CLOUDSDK_COMPUTE_REGION=europe-central2'
       - 'CLOUDSDK_CONTAINER_CLUSTER=project-cluster'
+
+images:
+  - 'gcr.io/devops-384013/todo-server-app:latest'

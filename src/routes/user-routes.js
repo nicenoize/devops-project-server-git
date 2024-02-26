@@ -19,6 +19,7 @@ routes.post('/signup', async (req, res) => {
         const user = await Users(newUser)
 
         await user.save()
+        console.log('User created successfully')
 
         res.send({ user })
     }

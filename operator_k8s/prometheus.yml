@@ -1,0 +1,9 @@
+global:
+  scrape_interval: 15s  # By default, scrape targets every 15 seconds.
+
+scrape_configs:
+  - job_name: 'devops-tutorial'
+    static_configs:
+      - targets: ['www.devops-tutorial.site']
+    metrics_path: '/api/metrics'
+    scheme: 'http'  # Use 'https' if your site is served over HTTPS.

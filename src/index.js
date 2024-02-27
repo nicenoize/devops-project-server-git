@@ -8,7 +8,7 @@ const todoRoutes = require('./routes/todo-routes');
 const userRoutes = require('./routes/user-routes');
 const errorRoutes = require('./routes/error-routes');
 const cookieParser = require('cookie-parser');
-const { setupMetricsMiddleware } = require('./metrics'); // Assuming your metrics setup is in a file named 'metrics.js'
+const { setupMetricsMiddleware } = require('./routes/metrics');
 
 const app = express();
 const port = process.env.PORT || 5000;

@@ -1,4 +1,3 @@
-// metrics.js
 const express = require('express');
 const client = require('prom-client');
 const promBundle = require('express-prom-bundle');
@@ -48,11 +47,19 @@ function setupMetricsMiddleware(app) {
   const metricsMiddleware = promBundle({ includeMethod: true, metricsPath: '/metrics', promClient: { collectDefaultMetrics: {}, register } });
   app.use(metricsMiddleware);
 
-//   // Optional: If you want to make the metrics available on a different route,
-//   app.get('/metrics', async (req, res) => {
-//     res.set('Content-Type', register.contentType);
-//     res.end(await register.metrics());
-//   });
+  console.log('Metrics middleware has been set up.');
+
+  // Test route for middleware check
+  app.get('/metrics/test', (req, res) => {
+      console.log('Metrics test route accessed.');
+      res.status(200).send('Metrics middleware is operational.');
+  });
+
+  // Uncomment if you want to expose metrics on a custom route
+  // app.get('/metrics', async (req, res) => {
+  //   res.set('Content-Type', register.contentType);
+  //   res.end(await register.metrics());
+  // });
 }
 
 module.exports = {

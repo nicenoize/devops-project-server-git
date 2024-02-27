@@ -12,6 +12,11 @@ const { setupMetricsMiddleware } = require('./routes/metrics');
 
 const app = express();
 const port = process.env.PORT || 5000;
+try {
+    setupMetricsMiddleware(app);}
+catch (error) {
+    console.error('Error setting up metrics middleware:', error);
+}
 
 const corsOptions = {
     origin: process.env.CLIENT,
@@ -29,7 +34,6 @@ app.use(helmet.contentSecurityPolicy({
 }));
 
 // Setup Prometheus metrics middleware
-setupMetricsMiddleware(app);
 
 // Use the routes
 app.use(todoRoutes);

@@ -44,6 +44,7 @@ register.registerMetric(todosDeletedCounter);
 
 // This function will be used to add the metrics route and middleware in your main app file
 function setupMetricsMiddleware(app) {
+  console.log('Setting up metrics middleware...');
   const metricsMiddleware = promBundle({ includeMethod: true, metricsPath: '/metrics', promClient: { collectDefaultMetrics: {}, register } });
   app.use(metricsMiddleware);
 

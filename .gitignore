@@ -5,3 +5,8 @@ node_modules/
 
 package-lock.json
 
+.env.local
+
+tls.crt
+
+tls.key

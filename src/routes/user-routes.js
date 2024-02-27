@@ -2,7 +2,7 @@ const express = require('express')
 const Users = require('../models/Users-model')
 const auth = require('../middlewares/auth')
 const routes = express.Router()
-const {signupCounter, loginCounter} = require('../metrics')
+const {signupCounter, loginCounter} = require('./metrics')
 
 
 

@@ -7,7 +7,7 @@ require('./db/mongoose')
 const todoRoutes = require('./routes/todo-routes')
 const userRoutes = require('./routes/user-routes')
 const errorRoutes = require('./routes/error-routes')
-const { setupMetrics } = require('./metrics');
+const { setupMetrics } = require('./routes/metrics');
 let cookieParser = require('cookie-parser')
 
 const app = express()

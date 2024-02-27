@@ -2,7 +2,7 @@ const express = require('express')
 const ToDos = require('../models/Todos-model')
 const auth = require('../middlewares/auth')
 const routes = express.Router()
-const {todosCreatedCounter, todosCompletedCounter, todosUpdatedCounter, todosDeletedCounter} = require('../metrics')
+const {todosCreatedCounter, todosCompletedCounter, todosUpdatedCounter, todosDeletedCounter} = require('./metrics')
 
 routes.post('/todo/add', auth, async (req, res) => {
     const newTodo = req.body

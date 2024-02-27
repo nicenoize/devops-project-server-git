@@ -21,8 +21,12 @@ routes.post('/signup', async (req, res) => {
         const user = await Users(newUser);
         await user.save();
         console.log('User created successfully');
-        signupCounter.inc(); // Increment the signup counter
-        console.log('signupCounter => ', signupCounter);
+        try {
+            signupCounter.inc(); // Increment the signup counter
+            console.log('signupCounter incremented');
+        } catch (error) {
+            console.error('Error incrementing signupCounter:', error);
+        }
         res.send({ user });
     } catch (e) {
         console.error(e); // Log the error to the console for debugging
@@ -57,7 +61,6 @@ routes.post('/login', async (req, res) => {
         const user = await Users.findByCredentials(req.body.email, req.body.password)
 
         const token = await user.generateAuthToken()
-                signupCounter.inc(); // Increment the signup counter
 
         loginCounter.inc(); // Increment the login counter
         res.cookie('todo-jt', token, cookieOptions).send({ user, token })

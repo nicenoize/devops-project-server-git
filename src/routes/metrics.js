@@ -46,7 +46,7 @@ register.registerMetric(todosDeletedCounter);
 const metricsMiddleware = promBundle({includeMethod: true});
 app.use(metricsMiddleware);
 
-app.get('/metrics', async (req, res) => {
+app.get('/api/metrics', async (req, res) => {
   res.set('Content-Type', register.contentType);
   res.end(await register.metrics());
 });

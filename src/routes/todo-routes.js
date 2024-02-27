@@ -2,6 +2,7 @@ const express = require('express')
 const ToDos = require('../models/Todos-model')
 const auth = require('../middlewares/auth')
 const routes = express.Router()
+const {todosCreatedCounter, todosCompletedCounter, todosUpdatedCounter, todosDeletedCounter} = require('../metrics')
 
 routes.post('/todo/add', auth, async (req, res) => {
     const newTodo = req.body
@@ -22,7 +23,8 @@ routes.post('/todo/add', auth, async (req, res) => {
 
         await todo.save()
 
-        res.send({ todo })
+    todosCreatedCounter.inc();
+    res.send({ todo })
     }
     catch (e) {
         res.status(400).send(e)
@@ -35,7 +37,7 @@ routes.post('/todo/list', auth, async (req, res) => {
         const todos = await ToDos.find({
             user: req.user._id
         })
-
+        
         res.send(todos)
     }
     catch (e) {
@@ -58,6 +60,7 @@ routes.patch('/todo/update', auth, async (req, res) => {
     }
 
     if (changedTodo.hasOwnProperty("done")) {
+        todosCompletedCounter.inc()
         updateObj.done = changedTodo.done
     }
 
@@ -71,6 +74,7 @@ routes.patch('/todo/update', auth, async (req, res) => {
 
         if (!todo) { return res.status(404).send() }
 
+        todosUpdatedCounter.inc();
         res.send(todo)
 
     } catch (e) {
@@ -84,6 +88,8 @@ routes.delete('/todo/delete', auth, async (req, res) => {
 
         await todo.remove()
         res.send(todo)
+
+        todosDeletedCounter.inc();
 
     } catch (e) {
         res.status(500).send()

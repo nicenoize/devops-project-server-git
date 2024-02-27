@@ -2,6 +2,8 @@ const express = require('express')
 const Users = require('../models/Users-model')
 const auth = require('../middlewares/auth')
 const routes = express.Router()
+const {signupCounter, loginCounter} = require('../metrics')
+
 
 
 // User create (signup)
@@ -16,18 +18,16 @@ routes.post('/signup', async (req, res) => {
     }
 
     try {
-        const user = await Users(newUser)
-
-        await user.save()
-        console.log('User created successfully')
-
-        res.send({ user })
-    }
-    catch (e) {
+        const user = await Users(newUser);
+        await user.save();
+        console.log('User created successfully');
+        signupCounter.inc(); // Increment the signup counter
+        res.send({ user });
+    } catch (e) {
         console.error(e); // Log the error to the console for debugging
-        res.status(400).send(e)
+        res.status(400).send(e);
     }
-})
+});
 
 // check if previously loggeding
 routes.post('/init', auth, async (req, res) => {
@@ -56,7 +56,9 @@ routes.post('/login', async (req, res) => {
         const user = await Users.findByCredentials(req.body.email, req.body.password)
 
         const token = await user.generateAuthToken()
+                signupCounter.inc(); // Increment the signup counter
 
+        loginCounter.inc(); // Increment the login counter
         res.cookie('todo-jt', token, cookieOptions).send({ user, token })
 
     } catch (e) {

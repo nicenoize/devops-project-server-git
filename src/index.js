@@ -7,6 +7,7 @@ require('./db/mongoose')
 const todoRoutes = require('./routes/todo-routes')
 const userRoutes = require('./routes/user-routes')
 const errorRoutes = require('./routes/error-routes')
+const { setupMetrics } = require('./metrics');
 let cookieParser = require('cookie-parser')
 
 const app = express()
@@ -32,6 +33,7 @@ app.use(helmet.contentSecurityPolicy({
 app.use(todoRoutes)
 app.use(userRoutes)
 app.use(errorRoutes)
+setupMetrics(app);
 
 app.listen(port, () => {
     console.log('ToDo server is up on port ' + port)

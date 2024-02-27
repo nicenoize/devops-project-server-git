@@ -10,4 +10,4 @@ spec:
       app: devops-todo
   endpoints:
   - port: web
-    path: /api/metrics
+    path: /metrics

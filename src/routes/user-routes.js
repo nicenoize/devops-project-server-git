@@ -22,6 +22,7 @@ routes.post('/signup', async (req, res) => {
         await user.save();
         console.log('User created successfully');
         signupCounter.inc(); // Increment the signup counter
+        console.log('signupCounter => ', signupCounter);
         res.send({ user });
     } catch (e) {
         console.error(e); // Log the error to the console for debugging

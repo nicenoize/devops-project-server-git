@@ -22,14 +22,14 @@ steps:
 
   # Authenticate with GKE
   - name: 'gcr.io/cloud-builders/gcloud'
-    args: ['container', 'clusters', 'get-credentials', 'cluster-1', '--region', 'europe-central2-a', '--project', 'devops-384013']
+    args: ['container', 'clusters', 'get-credentials', 'autopilot-cluster-1', '--region', 'europe-central2-a', '--project', 'devops-384013']
 
   # Apply Kubernetes manifests
   - name: 'gcr.io/cloud-builders/kubectl'
     args: ['apply', '-f', 'YAML/']
     env:
       - 'CLOUDSDK_COMPUTE_REGION=europe-central2-a'
-      - 'CLOUDSDK_CONTAINER_CLUSTER=cluster-1'
+      - 'CLOUDSDK_CONTAINER_CLUSTER=autopilot-cluster-1'
       - 'REACT_APP_baseAPIURL=http://www.devops-tutorial.site'
 
 images:

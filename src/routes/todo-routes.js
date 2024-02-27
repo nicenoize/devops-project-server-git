@@ -24,6 +24,7 @@ routes.post('/todo/add', auth, async (req, res) => {
         await todo.save()
 
     todosCreatedCounter.inc();
+    console.log('todosCreatedCounter => ', todosCreatedCounter);
     res.send({ todo })
     }
     catch (e) {
@@ -61,6 +62,7 @@ routes.patch('/todo/update', auth, async (req, res) => {
 
     if (changedTodo.hasOwnProperty("done")) {
         todosCompletedCounter.inc()
+        console.log('todosCompletedCounter => ', todosCompletedCounter);
         updateObj.done = changedTodo.done
     }
 
@@ -75,6 +77,7 @@ routes.patch('/todo/update', auth, async (req, res) => {
         if (!todo) { return res.status(404).send() }
 
         todosUpdatedCounter.inc();
+        console.log('todosUpdatedCounter => ', todosUpdatedCounter);
         res.send(todo)
 
     } catch (e) {

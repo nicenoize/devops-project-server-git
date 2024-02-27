@@ -20,7 +20,7 @@ routes.post('/signup', async (req, res) => {
     try {
         const user = await Users(newUser);
         await user.save();
-        console.log('User created successfully');
+        // console.log('User created successfully');
         try {
             signupCounter.inc(); // Increment the signup counter
             console.log('signupCounter incremented');

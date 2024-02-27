@@ -12,6 +12,7 @@ const { setupMetricsMiddleware } = require('./routes/metrics');
 
 const app = express();
 const port = process.env.PORT || 5000;
+console.log('testlog');
 try {
     console.log('Start setting up metrics middleware...');
     setupMetricsMiddleware(app);}

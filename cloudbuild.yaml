@@ -1,4 +1,16 @@
 steps:
+  # Step to run tests for the server
+  - name: 'node'
+    entrypoint: 'bash'
+    args:
+      - '-c'
+      - |
+        npm install && \
+        PORT=5000 \
+        MONGODB_URL=ongodb://todo-mongo-service:27017/todo-app/test-database \
+        JWT_SECRET=your-test-jwt-secret \
+        npm run test
+    dir: '.'
   # Build the Docker image for the server app
   - name: 'gcr.io/cloud-builders/docker'
     args: ['build', '--platform', 'linux/amd64', '-t', 'gcr.io/devops-384013/todo-server-app:latest', '.']

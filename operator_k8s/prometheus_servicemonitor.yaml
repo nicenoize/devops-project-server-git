@@ -9,6 +9,5 @@ spec:
     matchLabels:
       app: devops-todo
   endpoints:
-  - port: ""
-    targetPort: 5000
+  - targetPort: 5000 
     path: /api/metrics
